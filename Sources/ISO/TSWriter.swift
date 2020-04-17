@@ -341,11 +341,11 @@ class TSFileWriter: TSWriter {
         audioContinuityCounter = 0
         videoContinuityCounter = 0
 
-        nstry({
+//        nstry({
             self.currentFileHandle?.synchronizeFile()
-        }, { exeption in
-            logger.warn("\(exeption)")
-        })
+//        }, { exeption in
+//            logger.warn("\(exeption)")
+//        })
 
         currentFileHandle?.closeFile()
         currentFileHandle = try? FileHandle(forWritingTo: url)
@@ -355,12 +355,12 @@ class TSFileWriter: TSWriter {
     }
 
     override func write(_ data: Data) {
-        nstry({
+//        nstry({
             self.currentFileHandle?.write(data)
-        }, { exception in
-            self.currentFileHandle?.write(data)
-            logger.warn("\(exception)")
-        })
+//        }, { exception in
+//            self.currentFileHandle?.write(data)
+//            logger.warn("\(exception)")
+//        })
         super.write(data)
     }
 

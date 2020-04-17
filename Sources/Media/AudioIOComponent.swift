@@ -44,11 +44,11 @@ final class AudioIOComponent: IOComponent, DisplayLinkedQueueClockReference {
             guard let audioFormat = audioFormat, let audioEngine = audioEngine else {
                 return
             }
-            nstry({
+//            nstry({
                 audioEngine.connect(self.playerNode, to: audioEngine.mainMixerNode, format: audioFormat)
-            }, { exeption in
-                logger.warn(exeption)
-            })
+//            }, { exeption in
+//                logger.warn(exeption)
+//            })
             do {
                 try audioEngine.start()
                 if !playerNode.isPlaying {
@@ -223,14 +223,14 @@ extension AudioIOComponent: AudioConverterDelegate {
         mixer?.delegate?.didOutputAudio(buffer, presentationTimeStamp: presentationTimeStamp)
         currentBuffers.mutate { $0 += 1 }
 
-        nstry({
+//        nstry({
             self.playerNode.scheduleBuffer(buffer, completionHandler: self.didAVAudioNodeCompletion)
             if !self.playerNode.isPlaying {
                 self.playerNode.play()
             }
-        }, { exeption in
-            logger.warn(exeption)
-        })
+//        }, { exeption in
+//            logger.warn(exeption)
+//        })
     }
 
     private func didAVAudioNodeCompletion() {
